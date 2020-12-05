@@ -4,6 +4,8 @@ import { LocationProvider } from "./locations/LocationProvider"
 import { LocationList } from "./locations/LocationList"
 import { ProductProvider } from "./products/ProductProvider"
 import { ProductList } from "./products/ProductList"
+import { TypeProvider } from "./types/TypeProvider"
+
 
 export const ApplicationViews = (props) => {
     return (
@@ -15,12 +17,14 @@ export const ApplicationViews = (props) => {
                 } />
             </LocationProvider>
 
-            <ProductProvider>
-                {/* Render the product list when http://localhost:3000/ */}
-                <Route exact path="/products" render={
-                    props => <ProductList {...props} />
-                } />
-            </ProductProvider>
+            <TypeProvider>
+                <ProductProvider>
+                    {/* Render the product list when http://localhost:3000/ */}
+                    <Route exact path="/products" render={
+                        props => <ProductList {...props} />
+                    } />
+                </ProductProvider>
+            </TypeProvider>
         </>
     )
 }
