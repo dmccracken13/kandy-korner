@@ -27,9 +27,9 @@ export const EmployeeForm = (props) => {
             isManager = true
         }  else {isManager = false}
 
-        if (isManager === "true") {
-            isManager = true
-        }  else {isManager = false}
+        if (isFullTime === "true") {
+            isFullTime = true
+        }  else {isFullTime = false}
 
         if (locationId === 0) {
             window.alert("Please select a location")
