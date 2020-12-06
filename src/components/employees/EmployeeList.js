@@ -1,14 +1,18 @@
 import React, { useContext, useEffect } from "react"
 import { EmployeeContext } from "./EmployeeProvider"
+import { LocationContext } from "../locations/LocationProvider"
 import { Link } from "react-router-dom"
 import "./Employee.css"
+import { Employee } from "./Employee"
+
 
 export const EmployeeList = (props) => {
     const { employees, getEmployees } = useContext(EmployeeContext)
+    const { locations, getLocations } = useContext(LocationContext)
     
-
     useEffect(() => {
-        getEmployees()
+        getLocations()
+        .then(getEmployees)
     }, [])
     
     return (
@@ -19,9 +23,12 @@ export const EmployeeList = (props) => {
             </button>
             <article className="employeeList">
                 {employees.map(employee => {
-                    return <Link key={employee.id} to={`/employees/${employee.id}`}>
-                            <h3>{employee.name}</h3>
-                        </Link>
+                    const employeeLocation = locations.find(l => l.id === employee.locationId)
+
+                    return <Employee key={employee.id}
+                                employee={employee}
+                                location={employeeLocation}
+                            />
                     })
                 }
             </article>
