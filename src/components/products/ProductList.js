@@ -16,6 +16,7 @@ export const ProductList = () => {
     
     return (
         <div className="products">
+        <h1>Products</h1>
             {products.map(product => {
                 const prodType = types.find(t => t.id === product.typeId)
 
@@ -23,7 +24,7 @@ export const ProductList = () => {
                             type={prodType}
                             product={product} 
                             />
-        })
+            })
         }
         </div>
     )
